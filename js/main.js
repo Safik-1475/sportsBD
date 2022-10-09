@@ -1,6 +1,7 @@
 const searchBtn = document.getElementById('search-btn');
 searchBtn.addEventListener('click', function () {
     const searchInput = document.querySelector('#player-search');
+    document.getElementById('spinner').style.display = 'block';
     const searchValue = searchInput.value;
     searchInput.value = '';
 
@@ -13,6 +14,7 @@ searchBtn.addEventListener('click', function () {
 
 // Player Details here 
 const displayPlayer = players => {
+    document.getElementById('spinner').style.display = 'none';
     const playerColumn = document.querySelector('#player-column');
     playerColumn.innerHTML = '';
     for (const player of players) {
