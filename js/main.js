@@ -7,6 +7,7 @@ searchBtn.addEventListener('click', function () {
 
     // load sport bd api here
     const url = `https://www.thesportsdb.com/api/v1/json/2/searchplayers.php?p=${searchValue}`;
+    document.getElementById('spinner').style.display = 'block';
     fetch(url)
         .then(response => response.json())
         .then(data => displayPlayer(data.player))
@@ -15,12 +16,13 @@ searchBtn.addEventListener('click', function () {
 // Player Details here 
 const displayPlayer = players => {
     document.getElementById('spinner').style.display = 'none';
+    document.getElementById('spinner').style.display = 'none';
     const playerColumn = document.querySelector('#player-column');
     playerColumn.innerHTML = '';
     for (const player of players) {
         // create a div here 
         const div = document.createElement('div');
-        div.classList.add('col-md-5', 'col-sm-12', 'col-lg-5', 'border', 'shadow-lg', 'g-4');
+        div.classList.add('col-md-5', 'col-sm-12', 'col-lg-5', 'border', 'shadow-lg', 'g-4', 'column');
         div.innerHTML = `
         <img src="${player.strThumb}" alt="" class='img-responsive w-100' >
         <div class='d-flex justify-content-between my-3' >
@@ -29,7 +31,7 @@ const displayPlayer = players => {
                 <h3 class='fs-6' >Name : ${player.strPlayer}</h3>
             </div>
             <div class='d-flex justify-content-center align-self-center'>
-                <button type="button" class="btn btn-sm btn-outline-primary">Delete</button>
+                <button type="button" class="btn btn-sm btn-outline-primary" onclick="deleteBox()">Delete</button>
                 <button type="button" class="btn btn-sm btn-outline-primary" onclick="loadDetails(${player.idPlayer})">More..</button>
             </div>
         </div>
@@ -57,7 +59,7 @@ const displayPlayerDetails = player => {
         <div class="card-body">
         <ul class="list-group list-group-flush">  
             <li class="list-group-item">Name : ${player.strPlayer}</li>
-            <li class="list-group-item">$Birthday : ${player.dateBorn}</li>
+            <li class="list-group-item">Birthday : ${player.dateBorn}</li>
             <li class="list-group-item">Gender : ${player.strGender}</li>
             <li class="list-group-item">Height : ${player.strHeight}</li>
             <li class="list-group-item">Country : ${player.strNationality}</li>
@@ -70,4 +72,11 @@ const displayPlayerDetails = player => {
     </div>
     `;
     playerDetails.appendChild(div)
+};
+
+const deleteBox = () => {
+    const parent = document.getElementById('player-column');
+    const parentChild = document.getElementsByClassName('column')[0];
+    // console.log(parentChild);
+    parent.removeChild(parentChild);
 }
