@@ -17,7 +17,7 @@
         <div class="container">
             <div class="input-group mb-3 w-50 mx-auto my-4">
                 <input type="text" class="form-control" placeholder="Search your favorites player"
-                    aria-label="Recipient's username" aria-describedby="search-btn">
+                    aria-label="Recipient's username" aria-describedby="search-btn" id="player-search">
                 <button class="btn btn-outline-primary" type="button" id="search-btn">Search</button>
             </div>
         </div>
@@ -26,14 +26,14 @@
     <!-- main start -->
     <main class="bg-dark p-2 text-white">
         <div class="container">
-            <div class="row">
-                <section class="col-md-8 col-lg-8 bg-primary">
+            <div class="row gx-4">
+                <!-- player section start -->
+                <section class="col-md-8 col-lg-8">
                     <div class="row" id="player-column">
-                        <div class="col-6">
-                            <h1>Hello Bangladesh</h1>
-                        </div>
                     </div>
                 </section>
+                <!-- player section end -->
+                <!-- player details section start  -->
                 <section class="col-md-4 col-lg-4 bg-secondary">
                     <div class="row" id="player-details">
                         <div class="col-md-12">
@@ -41,6 +41,7 @@
                         </div>
                     </div>
                 </section>
+                <!-- player details section  end  -->
             </div>
         </div>
     </main>
