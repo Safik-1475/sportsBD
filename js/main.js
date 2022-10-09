@@ -14,6 +14,7 @@ searchBtn.addEventListener('click', function () {
 // Player Details here 
 const displayPlayer = players => {
     const playerColumn = document.querySelector('#player-column');
+    playerColumn.innerHTML = '';
     for (const player of players) {
         // create a div here 
         const div = document.createElement('div');
@@ -36,5 +37,35 @@ const displayPlayer = players => {
 };
 
 const loadDetails = player => {
-    console.log(player);
+    // console.log(player);
+    const url = `https://www.thesportsdb.com/api/v1/json/2/lookupplayer.php?id=${player}`;
+    fetch(url)
+        .then(res => res.json())
+        .then(data => displayPlayerDetails(data.players[0]))
+};
+const displayPlayerDetails = player => {
+    // console.log(player);
+    const playerDetails = document.getElementById('player-details');
+    playerDetails.innerHTML = '';
+    const div = document.createElement('div');
+    div.classList.add('col-12', 'col-md-10', 'col-lg-10');
+    div.innerHTML = `
+    <div class="card" style="width: 18rem;">
+        <img src="${player.strThumb}" class="card-img-top" alt="...">
+        <div class="card-body">
+        <ul class="list-group list-group-flush">  
+            <li class="list-group-item">Name : ${player.strPlayer}</li>
+            <li class="list-group-item">$Birthday : ${player.dateBorn}</li>
+            <li class="list-group-item">Gender : ${player.strGender}</li>
+            <li class="list-group-item">Height : ${player.strHeight}</li>
+            <li class="list-group-item">Country : ${player.strNationality}</li>
+            <li class="list-group-item">Jersey : ${player.strNumber}</li>
+            <li class="list-group-item">Weight : ${player.strWeight}</li>
+            <li class="list-group-item">Instagram : ${player.strInstagram}</li>
+            <li class="list-group-item">Facebook : ${player.strFacebook}</li>
+        </ul>
+        </div>
+    </div>
+    `;
+    playerDetails.appendChild(div)
 }
